@@ -180,7 +180,10 @@ run_npm "install --production"
 run_npm "rebuild"
 echo "Dependencies installed" | indent
 
-$BUILD_DIR/node_modules/browserify/bin/cmd.js src/documents/scripts/script.js > src/documents/scripts/app.js
+# generate static content
+echo "-----> Generating static content"
+cd $BUILD_DIR
+$BUILD_DIR/node_modules/browserify/bin/cmd.js $BUILD_DIR/src/documents/scripts/script.js > $BUILD_DIR/src/documents/scripts/app.js
 $BUILD_DIR/node_modules/docpad/bin/docpad generate
 
 echo "-----> Building runtime environment"
